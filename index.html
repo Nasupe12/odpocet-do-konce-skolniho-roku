@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odpočet do konce školního roku</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #e0f7fa;
+            color: #333;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .timer {
+            font-size: 2em;
+            padding: 20px;
+            background-color: #a5d6a7;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+<div class="timer">
+    <h1>Odpočet do konce školního roku</h1>
+    <p id="countdown"></p>
+</div>
+
+<script>
+    function updateCountdown() {
+        // Nastav datum a čas konce školního roku
+        const endOfSchool = new Date(2025, 5, 30, 12, 0, 0); // 30. června 2025 ve 12:00
+        const now = new Date();
+
+        if (now > endOfSchool) {
+            document.getElementById("countdown").innerHTML = "Prázdniny jsou tady! 🎉";
+            return;
+        }
+
+        const timeRemaining = endOfSchool - now;
+
+        const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown").innerHTML =
+            `${days} dní ${hours} hodin ${minutes} minut ${seconds} sekund`;
+    }
+
+    updateCountdown(); // Spustit hned při načtení
+    setInterval(updateCountdown, 1000); // Obnovovat každou sekundu
+</script>
+
+</body>
+</html>
